@@ -1,0 +1,51 @@
+<!-- Start Register Card -->
+<main id="main">
+  <div class="container-md">
+    <div class="row g-4">
+      <div class="col-md-6 d-flex flex-column justify-content-center">
+        <div class="card border border-0 shadow p-4">
+          <form>
+            <div class="form-group">
+              <label for="name">Enter Name :</label>
+              <input type="text" name="name" id="name" class="form-control my-2">
+            </div>
+            <div class="form-group">
+              <label for="email">Enter E-mail :</label>
+              <input type="email" name="email" id="email" class="form-control my-2">
+            </div>
+            <div class="form-group">
+              <label for="gender">Select Gender :</label>
+              <select name="gender" id="gender" class="form-control my-2">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="password">Enter Password :</label>
+              <input type="password" name="password" id="password" class="form-control my-2">
+            </div>
+            <div class="form-group">
+              <button class="btn d-block mx-auto mt-2">Register</button>
+            </div>
+          </form>
+          <p class="text-center">I already have an account <a routerLink="/login">login</a></p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="outfit">
+          <div class="top">
+            <img src="./outfit/jacket-outfit.png" alt="Jacket">
+          </div>
+          <div class="bottom">
+            <img src="./outfit/pantalon-outfit.png" alt="Pants">
+          </div>
+          <div class="shoes">
+            <img src="./outfit/shoes-outfit.png" alt="Shoes">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- End Register Card -->

@@ -1,0 +1,66 @@
+.container-md{
+  margin-top: 50px;
+}
+.card {
+  background: color-mix(in srgb, rgb(79, 78, 78) 10%, transparent 70%);
+  border-radius: 10px;
+  color: var(--color-light);
+  margin-bottom: 40px; /* أضفنا مسافة أسفل الكارد */
+}
+.btn {
+  color: var(--color-dark);
+  background-color: var(--color-yellow);
+}
+.card p {
+  padding: 5px 0px;
+  margin: 0;
+}
+
+.card p a {
+  color: var(--color-yellow);
+  text-decoration: none;
+}
+.outfit {
+  position: relative;
+  height: 600px;
+  width: 260px;
+  margin-top: 20px;
+}
+.outfit .top {
+  position: absolute;
+  top: 15px;
+  left: 140px;
+  width: 100%;
+}
+.outfit .top img{
+  animation: jacket 2s linear .1s infinite ;
+}
+.outfit .bottom {
+  position: absolute;
+  top: 160px;
+  left: 140px;
+  width: 100%;
+}
+.outfit .shoes {
+  position: absolute;
+  width:145px;
+  bottom: 20px;
+  left: 180px;
+}
+.outfit img {
+  width: 100%;
+  object-fit: contain;
+}
+@media screen and (max-width :768px) {
+  .outfit{
+    display: none;
+  }
+}
+@keyframes jacket {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform:rotateZ(-10deg)
+  }
+}

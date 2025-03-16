@@ -1,0 +1,28 @@
+<!-- wardrobe.component.html -->
+<div class="container-xxl col-md-8 mt-5">
+  <div class="logo">
+    <div class="img">
+      <img src="./img/hanger.png" alt="">
+    </div>
+    <h2 class="mt-1">My Wardrobe</h2>
+  </div>
+
+  <app-categories (categorySelected)="onCategorySelected($event)"></app-categories>
+
+  <div *ngIf="activeCategory" class="mt-4">
+    <h3>{{ activeCategory }}</h3>
+    <div class="row">
+      <div *ngFor="let image of images" class="col-md-3 my-2">
+        <div class="card img-card shadow">
+          <img [src]="image" alt="{{ activeCategory }}">
+        </div>
+      </div>
+      <div class="card-upload flex justify-center">
+        <p-toast />
+        <p-fileupload mode="basic" class="inputFile" name="demo[]" chooseIcon="pi pi-upload"
+          url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000" [auto]="true"
+          chooseLabel="Upload" />
+      </div>
+    </div>
+  </div>
+</div>
