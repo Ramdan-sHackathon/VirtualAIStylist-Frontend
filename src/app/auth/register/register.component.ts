@@ -15,7 +15,6 @@ export class RegisterComponent {
   constructor(private _UserService: UserService) { }
   true: boolean = true;
   false: boolean = false;
-  // user: User = {} as User;
   registerForm: FormGroup = new FormGroup(
     {
       fristName: new FormControl('', [
