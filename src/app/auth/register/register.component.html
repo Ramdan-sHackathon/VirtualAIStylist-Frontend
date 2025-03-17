@@ -4,25 +4,67 @@
     <div class="row g-4">
       <div class="col-md-6 d-flex flex-column justify-content-center">
         <div class="card border border-0 shadow p-4">
-          <form>
-            <div class="form-group">
-              <label for="name">Enter Name :</label>
-              <input type="text" name="name" id="name" class="form-control my-2">
+          <form  (ngSubmit)="registerSubmit(user)">
+            <div class="row">
+              <div class="col-md-6">
+                <!-- First Name -->
+                <div class="form-group">
+                  <label for="fristName">Enter First Name :</label>
+                  <input type="text" name="fristName" id="fristName" [(ngModel)]="user.fristName"
+                    class="form-control my-2">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <!-- Last Name -->
+                <div class="form-group">
+                  <label for="lastName">Enter Last Name :</label>
+                  <input type="text" name="lastName" id="lastName" [(ngModel)]="user.lastName" class="form-control my-2">
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="email">Enter E-mail :</label>
-              <input type="email" name="email" id="email" class="form-control my-2">
+            <div class="row">
+              <div class="col-md-6">
+                <!-- E-mail -->
+                <div class="form-group">
+                  <label for="email">Enter E-mail :</label>
+                  <input type="email" name="email" id="email" [(ngModel)]="user.email" class="form-control my-2">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <!-- Age -->
+                <div class="form-group">
+                  <label for="age">Enter Age:</label>
+                  <input type="number" name="age" id="age" [(ngModel)]="user.age" class="form-control my-2">
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="gender">Select Gender :</label>
-              <select name="gender" id="gender" class="form-control my-2">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
+            <div class="row">
+              <div class="col-md-6">
+                <!-- Password -->
+                <div class="form-group">
+                  <label for="password">Enter Password :</label>
+                  <input type="password" name="password" id="password" [(ngModel)]="user.password"
+                    class="form-control my-2">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <!-- Password Confirmation -->
+                <div class="form-group">
+                  <label for="confirmPassword">Confirm Password:</label>
+                  <input type="password" name="confirmPassword" id="confirmPassword" [(ngModel)]="user.confirmPassword"
+                    class="form-control my-2">
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="password">Enter Password :</label>
-              <input type="password" name="password" id="password" class="form-control my-2">
+            <div class="row">
+              <!-- Gender -->
+              <div class="form-group">
+                <label for="gender">Select Gender :</label>
+                <select name="gender" id="gender" [(ngModel)]="user.gender" class="form-control my-2">
+                  <option [value]="true">Male</option>
+                  <option [value]="false">Female</option>
+                </select>
+              </div>
             </div>
             <div class="form-group">
               <button class="btn d-block mx-auto mt-2">Register</button>
