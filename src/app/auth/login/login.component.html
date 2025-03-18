@@ -1,11 +1,11 @@
-<!-- Start Login Card -->
+<!-- Start Register Card -->
 <main id="main">
   <div class="container-md">
-    <div class="row">
-      <div class="col-md-6">
+    <div class="row g-4">
+      <div class="col-lg-6">
         <div class="outfit">
           <div class="top">
-            <img src="./outfit/shirt-outfit.png" alt="Shirt">
+            <img src="./outfit/shirt-outfit.png" alt="Jacket">
           </div>
           <div class="bottom">
             <img src="./outfit/pantalon2-outfit.png" alt="Pants">
@@ -15,24 +15,53 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 d-flex flex-column justify-content-center">
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
         <div class="card border border-0 shadow p-4">
-          <form>
-            <div class="form-group">
-              <label for="email">Enter E-mail :</label>
-              <input type="email" name="email" id="email" class="form-control my-2">
+          <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+            <div class="row">
+              <!-- Emai -->
+              <div class="form-group">
+                <label for="email">Enter E-mail :</label>
+                <input type="email" name="email" id="email" formControlName="email" class="form-control my-1" [ngClass]="{
+                            'is-valid': !loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty) ,
+                            'is-invalid':loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)
+                          }">
+                @if (loginForm.get('email')?.errors && (loginForm.get('email')?.touched ||
+                loginForm.get('email')?.dirty) ) {
+                @if (loginForm.get('email')?.getError('required') ) {
+                <p class="m-0 p-0 text-danger">E-mail Field is Required !</p>
+                }
+                }
+              </div>
+              <!-- Password -->
+              <div class="form-group">
+                <label for="password">Enter Password :</label>
+                <input type="password" name="password" id="password" formControlName="password"
+                  class="form-control my-1" [ngClass]="{
+                              'is-valid': !loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty) ,
+                              'is-invalid': loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)
+                            }" type="password" class="form-control my-1" formControlName="password">
+                @if (loginForm.get('password')?.errors && (loginForm.get('password')?.touched ||
+                loginForm.get('password')?.dirty)) {
+                @if (loginForm.get('password')?.getError('required') ) {
+                <p class="m-0 text-danger">Password Field is Required !</p>
+                }@else if (loginForm.get('password')?.getError('minlength')) {
+                <p class="m-0 text-danger">Min Length 6 Characters</p>
+                }@else if (loginForm.get('password')?.getError('maxlength')) {
+                <p class="m-0 text-danger">Max Length 10 Characters</p>
+                }
+                }
+              </div>
             </div>
             <div class="form-group">
-              <label for="password">Enter Password :</label>
-              <input type="password" name="password" id="password" class="form-control my-2">
-            </div>
-            <div class="form-group">
-              <button class="btn d-block mx-auto mt-2">Login</button>
+              <button class="btn d-block mx-auto my-1" [disabled]="loginForm.invalid">Login</button>
             </div>
           </form>
+          <p class="text-center">Don't Have An Account? <a routerLink="/register">register</a></p>
         </div>
       </div>
+
     </div>
   </div>
 </main>
-<!-- End Login Card -->
+<!-- End Register Card -->

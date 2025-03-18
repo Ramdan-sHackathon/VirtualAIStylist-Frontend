@@ -23,7 +23,7 @@
 .outfit {
   position: relative;
   height: 620px;
-  width: 280px;
+  width: 250px;
   margin-top: 20px;
 }
 .outfit .top {
@@ -51,9 +51,12 @@
   width: 100%;
   object-fit: contain;
 }
-@media screen and (max-width :768px) {
+@media screen and (max-width :992px) {
   .outfit{
     display: none;
+  }
+  form{
+    width: 100%;
   }
 }
 @keyframes jacket {

@@ -10,6 +10,9 @@ import { environment } from "../../../environments/environment.development";
 export class UserService {
   constructor(private _HttpClient: HttpClient) { }
   userRegister(user: User): Observable<any> {
-    return this._HttpClient.post<any>(`http://virtualaistylist.runasp.net/api/Account/Register`, user);
+    return this._HttpClient.post<any>(`${environment.baseUrl}/Account/Register`, user);
+  }
+  userLogin(email: string, password: string): Observable<any> {
+    return this._HttpClient.get(`${environment.baseUrl}/Account/Login?Email=${email}&Password=${password}`);
   }
 }

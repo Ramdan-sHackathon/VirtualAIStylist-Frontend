@@ -1,7 +1,10 @@
+<div class="nav">
+  <button class="btn" (click)="logout()">Logout</button>
+</div>
 <!-- Start Home Page  -->
 <div class="container-xxl home">
   <div class="container col-md-9 ">
-    <h1 class="py-2">Hello <span style="color: var(--color-yellow);">Abdelrahman</span> , Find Your
+    <h1 class="py-2">Hello <span style="color: var(--color-yellow);">{{ user.firstName }}</span> , Find Your
       Perfect Look
       .. </h1>
     <div class="card p-4">

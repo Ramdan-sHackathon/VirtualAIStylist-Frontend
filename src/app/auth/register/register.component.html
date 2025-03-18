@@ -11,15 +11,34 @@
                 <div class="form-group">
                   <label for="fristName">Enter First Name :</label>
                   <input type="text" name="fristName" id="fristName" formControlName="fristName"
-                    class="form-control my-2">
+                    class="form-control my-1" [ngClass]="{
+              'is-valid': !registerForm.get('fristName')?.errors && (registerForm.get('fristName')?.touched || registerForm.get('fristName')?.dirty) ,
+              'is-invalid':registerForm.get('fristName')?.errors && (registerForm.get('fristName')?.touched || registerForm.get('fristName')?.dirty)
+            }">
                 </div>
+                @if (registerForm.get('fristName')?.errors && (registerForm.get('fristName')?.touched ||
+                registerForm.get('fristName')?.dirty) ) {
+                @if (registerForm.get('fristName')?.getError('required') ) {
+                <p class="m-0 p-0 text-danger">First Name Field is Required !</p>
+                }
+                }
               </div>
               <div class="col-md-6">
                 <!-- Last Name -->
                 <div class="form-group">
                   <label for="lastName">Enter Last Name :</label>
-                  <input type="text" name="lastName" id="lastName" formControlName="lastName" class="form-control my-2">
+                  <input type="text" name="lastName" id="lastName" formControlName="lastName" class="form-control my-1"
+                    [ngClass]="{
+              'is-valid': !registerForm.get('lastName')?.errors && (registerForm.get('lastName')?.touched || registerForm.get('lastName')?.dirty) ,
+              'is-invalid':registerForm.get('lastName')?.errors && (registerForm.get('lastName')?.touched || registerForm.get('lastName')?.dirty)
+            }">
                 </div>
+                @if (registerForm.get('lastName')?.errors && (registerForm.get('lastName')?.touched ||
+                registerForm.get('lastName')?.dirty) ) {
+                @if (registerForm.get('lastName')?.getError('required') ) {
+                <p class="m-0 p-0 text-danger">Last Name Field is Required !</p>
+                }
+                }
               </div>
             </div>
             <div class="row">
@@ -27,15 +46,34 @@
                 <!-- E-mail -->
                 <div class="form-group">
                   <label for="email">Enter E-mail :</label>
-                  <input type="email" name="email" id="email" formControlName="email" class="form-control my-2">
+                  <input type="email" name="email" id="email" formControlName="email" class="form-control my-1"
+                    [ngClass]="{
+              'is-valid': !registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty) ,
+              'is-invalid':registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)
+            }">
                 </div>
+                @if (registerForm.get('email')?.errors && (registerForm.get('email')?.touched ||
+                registerForm.get('email')?.dirty) ) {
+                @if (registerForm.get('email')?.getError('required') ) {
+                <p class="m-0 p-0 text-danger">E-mail Field is Required !</p>
+                }
+                }
               </div>
               <div class="col-md-6">
                 <!-- Age -->
                 <div class="form-group">
-                  <label for="age">Enter Age:</label>
-                  <input type="number" name="age" id="age" formControlName="age" class="form-control my-2">
+                  <label for="age">Enter Age :</label>
+                  <input type="number" name="age" id="age" formControlName="age" class="form-control my-1" [ngClass]="{
+              'is-valid': !registerForm.get('age')?.errors && (registerForm.get('age')?.touched || registerForm.get('age')?.dirty) ,
+              'is-invalid':registerForm.get('age')?.errors && (registerForm.get('age')?.touched || registerForm.get('age')?.dirty)
+            }">
                 </div>
+                @if (registerForm.get('age')?.errors && (registerForm.get('age')?.touched ||
+                registerForm.get('age')?.dirty) ) {
+                @if (registerForm.get('age')?.getError('required') ) {
+                <p class="m-0 p-0 text-danger">Age Field is Required !</p>
+                }
+                }
               </div>
             </div>
             <div class="row">
@@ -44,7 +82,20 @@
                 <div class="form-group">
                   <label for="password">Enter Password :</label>
                   <input type="password" name="password" id="password" formControlName="password"
-                    class="form-control my-2">
+                    class="form-control my-1" [ngClass]="{
+              'is-valid': !registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty) ,
+              'is-invalid': registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)
+            }" type="password" class="form-control my-1" formControlName="password">
+                  @if (registerForm.get('password')?.errors && (registerForm.get('password')?.touched ||
+                  registerForm.get('password')?.dirty)) {
+                  @if (registerForm.get('password')?.getError('required') ) {
+                  <p class="m-0 text-danger">Password Field is Required !</p>
+                  }@else if (registerForm.get('password')?.getError('minlength')) {
+                  <p class="m-0 text-danger">Min Length 6 Characters</p>
+                  }@else if (registerForm.get('password')?.getError('maxlength')) {
+                  <p class="m-0 text-danger">Max Length 10 Characters</p>
+                  }
+                  }
                 </div>
               </div>
               <div class="col-md-6">
@@ -52,7 +103,16 @@
                 <div class="form-group">
                   <label for="confirmPassword">Confirm Password:</label>
                   <input type="password" name="confirmPassword" id="confirmPassword" formControlName="confirmPassword"
-                    class="form-control my-2">
+                    class="form-control my-1" [ngClass]="{
+              'is-valid': !registerForm.getError('mismatch') && (registerForm.get('confirmPassword')?.touched || registerForm.get('confirmPassword')?.dirty) ,
+              'is-invalid':registerForm.getError('mismatch') && (registerForm.get('confirmPassword')?.touched || registerForm.get('confirmPassword')?.dirty)
+            }">
+                  @if (registerForm.getError('mismatch') && (registerForm.get('confirmPassword')?.touched ||
+                  registerForm.get('confirmPassword')?.dirty)) {
+                  <p class="m-0 text-danger">
+                    The Password Doesn't Match
+                  </p>
+                  }
                 </div>
               </div>
             </div>
@@ -60,20 +120,19 @@
               <!-- Gender -->
               <div class="form-group">
                 <label for="gender">Select Gender :</label>
-                <select name="gender" id="gender" formControlName="gender" class="form-control my-2">
+                <select name="gender" id="gender" formControlName="gender" class="form-control my-1">
                   <option [value]="false">Male</option>
                   <option [value]="true">Female</option>
                 </select>
               </div>
             </div>
             <div class="form-group">
-              <button class="btn d-block mx-auto mt-2">Register</button>
+              <button class="btn d-block mx-auto my-1" [disabled]="registerForm.invalid">Register</button>
             </div>
           </form>
-          <p class="text-center">I already have an account <a routerLink="/login">login</a></p>
+          <p class="text-center">I Already Have An Account <a routerLink="/login">login</a></p>
         </div>
       </div>
-
       <div class="col-md-6">
         <div class="outfit">
           <div class="top">
