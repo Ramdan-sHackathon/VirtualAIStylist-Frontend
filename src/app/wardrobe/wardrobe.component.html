@@ -1,28 +1,31 @@
-<!-- wardrobe.component.html -->
 <div class="container-xxl col-md-8 mt-5">
   <div class="logo">
     <div class="img">
-      <img src="./img/hanger.png" alt="">
+      <img src="./img/hanger.png" alt="Hanger">
     </div>
     <h2 class="mt-1">My Wardrobe</h2>
   </div>
-
   <app-categories (categorySelected)="onCategorySelected($event)"></app-categories>
-
   <div *ngIf="activeCategory" class="mt-4">
     <h3>{{ activeCategory }}</h3>
     <div class="row">
-      <div *ngFor="let image of images" class="col-md-3 my-2">
+      <div *ngFor="let image of Pieces()" class="col-md-3 my-2">
         <div class="card img-card shadow">
-          <img [src]="image" alt="{{ activeCategory }}">
+          <img [src]="image.imageUrl" alt="{{ activeCategory }}">
+          <button class="btn" (click)="deletePiece(image.id)"><i class="fa-solid fa-trash text-danger"
+              title="Delete"></i></button>
         </div>
       </div>
-      <div class="card-upload flex justify-center">
-        <p-toast />
-        <p-fileupload mode="basic" class="inputFile" name="demo[]" chooseIcon="pi pi-upload"
-          url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000" [auto]="true"
-          chooseLabel="Upload" />
+      <div class="card-upload d-flex justify-content-center">
+        <p-toast></p-toast>
+        <p-fileupload mode="basic" name="files" accept="image/*" maxFileSize="1000000" chooseLabel="Select Image"
+          (onSelect)="onFileSelect($event)">
+        </p-fileupload>
+        <button pButton label="Upload" icon="pi pi-upload" class="btn mt-2 ms-auto" (click)="uploadPieces()">
+          Upload Now
+        </button>
       </div>
+
     </div>
   </div>
 </div>

@@ -24,6 +24,14 @@
 }
 .row .img-card{
   overflow: hidden;
+  position: relative;
+}
+.row .img-card i{
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  font-size: 22px;
+
 }
 .row .img-card:hover img{
   scale: 1.2;
@@ -31,7 +39,7 @@
 .card-upload{
   background-color: transparent !important;
 }
-.p-button {
+.p-button , .btn {
   background-color: var(--color-yellow) !important;
   color: var(--color-dark) !important;
   border: none !important;

@@ -47,7 +47,7 @@ export class LoginComponent {
           }, 2000)
         },
         error: (err) => {
-          console.log(err);
+
           this._MessageService.add({
             severity: 'error',
             summary: 'error',
