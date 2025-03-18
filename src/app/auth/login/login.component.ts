@@ -4,16 +4,19 @@ import { UserService } from '../../core/services/user.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User } from '../../core/interfaces/User';
+import { MessageService } from 'primeng/api';
+import { Toast } from 'primeng/toast';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule],
+  imports: [RouterModule, ReactiveFormsModule, CommonModule, Toast],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  providers: [MessageService]
 })
 export class LoginComponent {
-  constructor(private _UserService: UserService, private _Router: Router) { }
+  constructor(private _UserService: UserService, private _Router: Router, private _MessageService: MessageService) { }
   user: User = {} as User;
   loginForm: FormGroup = new FormGroup(
     {
@@ -21,26 +24,35 @@ export class LoginComponent {
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(10),
+        Validators.maxLength(18),
       ]),
     },
   );
   loginSubmit() {
     if (this.loginForm.valid) {
       this.user = this.loginForm.value;
-      this._UserService.userLogin(this.user.email, this.user.password).subscribe({
+      this._UserService.userLogin(this.user).subscribe({
         next: (res) => {
-          console.log(res.data.email);
-          console.log(res.statusCode);
-          console.log(res);
-          localStorage.setItem('Token', res.data.email);
+          localStorage.setItem('Token', res.data.token);
           localStorage.setItem('user', JSON.stringify(res.data));
-          if (res.statusCode == 200) {
-            this._Router.navigateByUrl('/home');
-          }
+          this._MessageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Login Done Successfully!',
+          })
+          setTimeout(() => {
+            if (res.statusCode == 200) {
+              this._Router.navigateByUrl('/home');
+            }
+          }, 2000)
         },
         error: (err) => {
           console.log(err);
+          this._MessageService.add({
+            severity: 'error',
+            summary: 'error',
+            detail: 'Something Error , Check Your Data!',
+          })
         }
       })
     }

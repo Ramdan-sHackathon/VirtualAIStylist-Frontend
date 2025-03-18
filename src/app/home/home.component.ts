@@ -17,9 +17,5 @@ export class HomeComponent implements OnInit {
       console.log(this.user);
     }
   }
-  logout() {
-    localStorage.removeItem('user');
-    localStorage.removeItem('Token');
-    this._Router.navigateByUrl('/login');
-  }
+
 }

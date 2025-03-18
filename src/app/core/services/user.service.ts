@@ -12,7 +12,7 @@ export class UserService {
   userRegister(user: User): Observable<any> {
     return this._HttpClient.post<any>(`${environment.baseUrl}/Account/Register`, user);
   }
-  userLogin(email: string, password: string): Observable<any> {
-    return this._HttpClient.get(`${environment.baseUrl}/Account/Login?Email=${email}&Password=${password}`);
+  userLogin(user: User): Observable<any> {
+    return this._HttpClient.post(`${environment.baseUrl}/Account/Login`, user);
   }
 }

@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, title: 'Home Page', canActivate: [userGuard] },
   // Register Page
-  { path: 'register', component: RegisterComponent, title: 'Register' },
+  { path: 'register', component: RegisterComponent, title: 'Virtual AI Stylist | Register' },
   // Login Page
   { path: 'login', component: LoginComponent, title: 'Login' },
   // Wardrobe

@@ -1,5 +1,6 @@
-<!-- Start Register Card -->
+<!-- Start Login Card -->
 <main id="main">
+  <p-toast />
   <div class="container-md">
     <div class="row g-4">
       <div class="col-lg-6">
@@ -46,9 +47,9 @@
                 @if (loginForm.get('password')?.getError('required') ) {
                 <p class="m-0 text-danger">Password Field is Required !</p>
                 }@else if (loginForm.get('password')?.getError('minlength')) {
-                <p class="m-0 text-danger">Min Length 6 Characters</p>
+                <p class="m-0 text-danger">Min Length 10 Characters</p>
                 }@else if (loginForm.get('password')?.getError('maxlength')) {
-                <p class="m-0 text-danger">Max Length 10 Characters</p>
+                <p class="m-0 text-danger">Max Length 18 Characters</p>
                 }
                 }
               </div>
@@ -64,4 +65,4 @@
     </div>
   </div>
 </main>
-<!-- End Register Card -->
+<!-- End Login Card -->

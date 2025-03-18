@@ -21,7 +21,7 @@ export class RegisterComponent {
   false: boolean = false;
   registerForm: FormGroup = new FormGroup(
     {
-      fristName: new FormControl('', [
+      firstName: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(50),
@@ -35,11 +35,11 @@ export class RegisterComponent {
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(10),
+        Validators.maxLength(18),
       ]),
       confirmPassword: new FormControl(''),
       gender: new FormControl(true, [Validators.required]),
-      age: new FormControl(0, [Validators.required]),
+      age: new FormControl(null, [Validators.required]),
     },
     this.confirmPassword
   );
@@ -60,14 +60,12 @@ export class RegisterComponent {
       } else {
         user.gender = false;
       }
-      console.log(user);
       this._UserService.userRegister(user).subscribe({
         next: (res) => {
-          console.log(res);
           this._MessageService.add({
             severity: 'success',
             summary: 'Success',
-            detail: 'Registeration Done ',
+            detail: 'Registeration Done Successfully',
           })
           setTimeout(() => {
             if (res.statusCode == 200) {
@@ -79,7 +77,7 @@ export class RegisterComponent {
           this._MessageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: 'Check Your Data ',
+            detail: 'Something Error Check Your Data',
           })
         }
       })

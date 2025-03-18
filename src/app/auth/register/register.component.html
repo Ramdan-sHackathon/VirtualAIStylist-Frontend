@@ -1,23 +1,24 @@
 <!-- Start Register Card -->
 <main id="main">
+  <p-toast />
   <div class="container-md">
     <div class="row g-4">
-      <div class="col-md-6 d-flex flex-column justify-content-center">
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
         <div class="card border border-0 shadow p-4">
           <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
             <div class="row">
               <div class="col-md-6">
                 <!-- First Name -->
                 <div class="form-group">
-                  <label for="fristName">Enter First Name :</label>
-                  <input type="text" name="fristName" id="fristName" formControlName="fristName"
+                  <label for="firstName">Enter First Name :</label>
+                  <input type="text" name="firstName" id="firstName" formControlName="firstName"
                     class="form-control my-1" [ngClass]="{
-              'is-valid': !registerForm.get('fristName')?.errors && (registerForm.get('fristName')?.touched || registerForm.get('fristName')?.dirty) ,
-              'is-invalid':registerForm.get('fristName')?.errors && (registerForm.get('fristName')?.touched || registerForm.get('fristName')?.dirty)
+              'is-valid': !registerForm.get('firstName')?.errors && (registerForm.get('firstName')?.touched || registerForm.get('firstName')?.dirty) ,
+              'is-invalid':registerForm.get('firstName')?.errors && (registerForm.get('firstName')?.touched || registerForm.get('firstName')?.dirty)
             }">
                 </div>
-                @if (registerForm.get('fristName')?.errors && (registerForm.get('fristName')?.touched ||
-                registerForm.get('fristName')?.dirty) ) {
+                @if (registerForm.get('firstName')?.errors && (registerForm.get('firstName')?.touched ||
+                registerForm.get('firstName')?.dirty) ) {
                 @if (registerForm.get('fristName')?.getError('required') ) {
                 <p class="m-0 p-0 text-danger">First Name Field is Required !</p>
                 }
@@ -91,9 +92,9 @@
                   @if (registerForm.get('password')?.getError('required') ) {
                   <p class="m-0 text-danger">Password Field is Required !</p>
                   }@else if (registerForm.get('password')?.getError('minlength')) {
-                  <p class="m-0 text-danger">Min Length 6 Characters</p>
+                  <p class="m-0 text-danger">Min Length 10 Characters</p>
                   }@else if (registerForm.get('password')?.getError('maxlength')) {
-                  <p class="m-0 text-danger">Max Length 10 Characters</p>
+                  <p class="m-0 text-danger">Max Length 18 Characters</p>
                   }
                   }
                 </div>
@@ -133,7 +134,7 @@
           <p class="text-center">I Already Have An Account <a routerLink="/login">login</a></p>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-lg-6">
         <div class="outfit">
           <div class="top">
             <img src="./outfit/jacket-outfit.png" alt="Jacket">
