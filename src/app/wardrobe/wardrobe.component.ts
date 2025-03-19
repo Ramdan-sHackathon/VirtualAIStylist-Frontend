@@ -6,7 +6,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { Piece } from '../core/interfaces/Piece';
 import { PieceService } from '../core/services/piece.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { filter } from 'rxjs';
 
 interface data {
@@ -30,7 +30,7 @@ export class WardrobeComponent implements OnInit {
   constructor(private messageService: MessageService, private _PieceService: PieceService, private fb: FormBuilder) { }
   ngOnInit() {
     this.uploadForm = this.fb.group({
-      files: [null]
+      files: [null, Validators.required]
     });
     this._PieceService.getPieces('1').subscribe({
       next: (data: any) => {
@@ -67,25 +67,32 @@ export class WardrobeComponent implements OnInit {
     this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Image File Uploaded with Auto Mode' });
   }
   onFileSelect(event: any) {
-    const files = event.files;
-    this.uploadForm.patchValue({ files: files });
+    const fileList: FileList = event.files;
+    const filesArray: File[] = Array.from(fileList);
+
+    this.uploadForm.patchValue({ files: filesArray });
+    this.uploadForm.get('files')?.updateValueAndValidity();
+
+    console.log("Selected Files:", this.uploadForm.value.files);
   }
   uploadPieces() {
-    if (!this.uploadForm.value.files || this.uploadForm.value.files.length === 0) {
-      this.messageService.add({ severity: 'warn', summary: 'No Image Selected', detail: 'Please select Image first' });
+    const files: File[] = this.uploadForm.value.files;
+    if (!files || files.length === 0) {
+      this.messageService.add({ severity: 'warn', summary: 'No Image Selected', detail: 'Please select an image first' });
       return;
     }
-    const files: File[] = this.uploadForm.value.files;
     const formData = new FormData();
     formData.append("WardrobeId", this.categoryId);
-    for (let i = 0; i < files.length; i++) {
-      formData.append(`Pieces`, files[i]);
-    }
+    files.forEach((file) => {
+      formData.append("Pieces", file);
+    });
     this._PieceService.addPiece(formData).subscribe({
       next: (response: any) => {
         console.log(response);
         this.messageService.add({ severity: 'success', summary: 'Upload Successful', detail: 'Piece Image Added Successfully ✅' });
-        this.Pieces.update((oldPieces) => [...oldPieces, { id: response.WardrobeId, imageUrl: response.data }]);
+        if (response.data && Array.isArray(response.data)) {
+          this.Pieces.update((oldPieces) => [...oldPieces, ...response.data]);
+        }
       },
       error: (error) => {
         console.error(error);
