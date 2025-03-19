@@ -18,6 +18,7 @@ import { Toast } from 'primeng/toast';
 export class LoginComponent {
   constructor(private _UserService: UserService, private _Router: Router, private _MessageService: MessageService) { }
   user: User = {} as User;
+  // Login Form Email & Password
   loginForm: FormGroup = new FormGroup(
     {
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -28,6 +29,7 @@ export class LoginComponent {
       ]),
     },
   );
+  // Login Function
   loginSubmit() {
     if (this.loginForm.valid) {
       this.user = this.loginForm.value;
@@ -38,7 +40,7 @@ export class LoginComponent {
           this._MessageService.add({
             severity: 'success',
             summary: 'Success',
-            detail: 'Login Done Successfully!',
+            detail: 'Login Done Successfully! ✅',
           })
           setTimeout(() => {
             if (res.statusCode == 200) {

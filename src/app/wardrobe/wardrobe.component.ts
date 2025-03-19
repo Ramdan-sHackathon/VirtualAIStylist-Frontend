@@ -48,11 +48,11 @@ export class WardrobeComponent implements OnInit {
         break;
       case '2':
         this.categoryId = '2'
-        this.activeCategory = 'Boots';
+        this.activeCategory = 'Jeans';
         break;
       case '3':
         this.categoryId = '3'
-        this.activeCategory = 'Jeans';
+        this.activeCategory = 'Boots';
         break;
       case '4':
         this.categoryId = '4'

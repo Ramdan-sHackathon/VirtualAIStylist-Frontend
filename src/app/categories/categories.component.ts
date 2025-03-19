@@ -13,6 +13,7 @@ export class CategoriesComponent {
   @Output() categorySelected = new EventEmitter<any>();
   categoryId!: string;
   constructor(private _PieceService: PieceService) { }
+  // Chocie Category & Send Category Id & Data
   setCategory(category = this.categoryId) {
     this.categoryId = category;
     this._PieceService.getPieces(category).subscribe({

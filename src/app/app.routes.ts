@@ -8,11 +8,11 @@ import { userGuard } from './core/guards/user.guard';
 export const routes: Routes = [
   // Home Page
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, title: 'Home Page', canActivate: [userGuard] },
+  { path: 'home', component: HomeComponent, title: 'Virtual Ai Stylist | Home', canActivate: [userGuard] },
   // Register Page
-  { path: 'register', component: RegisterComponent, title: 'Virtual AI Stylist | Register' },
+  { path: 'register', component: RegisterComponent, title: 'Virtual AI Stylist | Register'},
   // Login Page
-  { path: 'login', component: LoginComponent, title: 'Login' },
+  { path: 'login', component: LoginComponent, title: 'Virtual Ai Stylist | Login' },
   // Wardrobe
-  { path: 'wardrobe', component: WardrobeComponent, title: 'My Wardrobe', canActivate: [userGuard] }
+  { path: 'wardrobe', component: WardrobeComponent, title: 'Virtual Ai Stylist | My Wardrobe', canActivate: [userGuard] }
 ];

@@ -19,6 +19,7 @@ export class RegisterComponent {
   constructor(private _UserService: UserService, private _Router: Router, private _MessageService: MessageService) { }
   true: boolean = true;
   false: boolean = false;
+  // Register Form
   registerForm: FormGroup = new FormGroup(
     {
       firstName: new FormControl('', [
@@ -52,6 +53,7 @@ export class RegisterComponent {
       };
     }
   }
+  // Register Function
   registerSubmit() {
     if (this.registerForm.valid) {
       const user = this.registerForm.value;
@@ -65,7 +67,7 @@ export class RegisterComponent {
           this._MessageService.add({
             severity: 'success',
             summary: 'Success',
-            detail: 'Registeration Done Successfully',
+            detail: 'Registeration Done Successfully ✅',
           })
           setTimeout(() => {
             if (res.statusCode == 200) {
